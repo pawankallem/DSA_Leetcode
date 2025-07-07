@@ -8,8 +8,6 @@ class Solution {
         int i = 0;
         int j = 0;
 
-        System.out.println(haystack.length() + " : " + needle.length() + " : " + (haystack.length() - needle.length()));
-
         while(i <= ( haystack.length() - needle.length() )) {
             if(needle.charAt(j) != haystack.charAt(i)) {
                 i++;
