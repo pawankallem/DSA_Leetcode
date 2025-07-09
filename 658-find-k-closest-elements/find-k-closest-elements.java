@@ -3,21 +3,21 @@ import java.util.List;
 
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-        int a = 0;
-        int b = arr.length - 1;
+        int l = 0;
+        int r = arr.length;
 
-        while( a < b ) {
-            int mid = a + ((b - a) / 2);
+        while( l < r) {
+            int m = l + (( r - l) / 2);
 
-            if(mid + k < arr.length && ( arr[mid + k] - x) < ( x - arr[mid] )) {
-                a = mid + 1;
+            if( m + k < arr.length && (x - arr[m]) > (arr[m + k] - x) ) {
+                l = m + 1;
             }else {
-                b = mid;
+                r = m;
             }
         }
 
         List<Integer> ans = new ArrayList<>();
-        for(int i = a; i < a+k; i++) {
+        for(int i = l; i < l + k; i++) {
             ans.add(arr[i]);
         }
 
