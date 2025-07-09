@@ -5,7 +5,6 @@
  * @return {number[]}
  */
 var findClosestElements = function(arr, k, x) {
-
     let i = 0;
     let j = arr.length - 1;
 
@@ -15,7 +14,6 @@ var findClosestElements = function(arr, k, x) {
         else j = m;
     }
 
-    console.log(i, j);
     let ans = [];
     for(let m = i; m < i + k; m++) {
         ans.push(arr[m]);
