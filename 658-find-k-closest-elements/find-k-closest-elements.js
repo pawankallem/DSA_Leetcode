@@ -9,23 +9,17 @@ var findClosestElements = function(arr, k, x) {
     let i = 0;
     let j = arr.length - 1;
 
-    while( i < j) {
+    while(i < j) {
         let m = i + Math.floor(( j - i) / 2);
-        if( (arr[m + k] - x) < ( x - arr[m] )) {
-            i = m + 1;
-        }else {
-            j = m;
-        }
+        if( x - arr[m] >  arr[m + k] - x ) i = m + 1;
+        else j = m;
     }
 
+    console.log(i, j);
     let ans = [];
-
-    for(let n = i; n < i + k; n++ ) {
-        ans.push(arr[n]);
+    for(let m = i; m < i + k; m++) {
+        ans.push(arr[m]);
     }
-    
-
-    console.log(ans);
 
     return ans;
 };
