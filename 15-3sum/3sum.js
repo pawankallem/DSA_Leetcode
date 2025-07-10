@@ -10,7 +10,6 @@ var threeSum = function(arr) {
             twoSum(arr, i, ans);
         }
     }
-    console.log(ans);
     return ans;
 };
 
