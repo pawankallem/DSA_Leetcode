@@ -10,19 +10,20 @@ class Solution {
         Map<Character,Integer> map = new HashMap<>();
 
         for(int i = 0; i < s.length(); i++) {
+            char key = s.charAt(i);
 
-            if(map.isEmpty() == false && map.containsKey(s.charAt(i)) && map.get(s.charAt(i)) == 1) {
+            if(map.isEmpty() == false && map.containsKey(key) && map.get(key) == 1) {
                 while(queue.isEmpty() == false) {
                     char ch = queue.remove();
                     map.put(ch,0);
-                    if(ch == s.charAt(i)) {
+                    if(ch == key) {
                         break;
                     }
                 }
             }
 
-            map.put(s.charAt(i), 1);
-            queue.add(s.charAt(i));
+            map.put(key, 1);
+            queue.add(key);
             if(max < queue.size()) {
                 max = queue.size();
             }
