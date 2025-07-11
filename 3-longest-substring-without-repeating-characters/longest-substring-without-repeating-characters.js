@@ -3,21 +3,23 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-
+    if(s.length <= 0) return 0;
     let max = 0;
-    let arr = [], obj = {};
+    let obj = {};
+    let i = 0, j = 0;
 
-    for(let i = 0; i < s.length; i++) {
-        if(obj[s[i]] == 1)  {
-            while(arr.length > 0) {
-                let val = arr.shift();
-                obj[val] = 0;
-                if(val == s[i]) break;
-            }
+    while(j < s.length) {
+        if(obj[s[j]] != undefined && i <= obj[s[j]] && obj[s[j]] < j) {
+            let val = s[j];
+            i = obj[val] + 1;
+            obj[val] = j;
+        }else {
+            obj[s[j]] = j;
         }
-        obj[s[i]] = 1;
-        arr.push(s[i]);
-        if(max < arr.length) max = arr.length;
+        const diff = (j - i) + 1 ;
+        if(max < diff) max = diff;
+        ++j;
     }
+
     return max;
 };
