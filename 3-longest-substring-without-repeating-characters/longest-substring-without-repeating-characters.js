@@ -12,9 +12,7 @@ var lengthOfLongestSubstring = function(s) {
             while(arr.length > 0) {
                 let val = arr.shift();
                 obj[val] = 0;
-                if(val == s[i]) {
-                    break;
-                }
+                if(val == s[i]) break;
             }
         }
         obj[s[i]] = 1;
