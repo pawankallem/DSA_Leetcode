@@ -13,7 +13,6 @@ var characterReplacement = function(s, k) {
     while(j < n) {
         map[s[j]]++;
         count++;
-        // if( maxChar == "" || map[s[j]] > map[maxChar] ) maxChar = s[j];
         maxChar = maxChar == "" ? s[j] : findMaxChar(map);
         let val = count - map[maxChar];
         if(val <= k) {
@@ -24,6 +23,7 @@ var characterReplacement = function(s, k) {
             map[s[i]]--;
             count -= 2;
             ++i;
+            if(j + 1 == n) break;
         }
     }
 
