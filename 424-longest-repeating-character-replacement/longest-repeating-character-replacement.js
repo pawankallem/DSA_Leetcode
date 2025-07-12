@@ -4,18 +4,19 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    let map = {};
-    map[s[0]] = 1;
-    let maxSS = 0;
     let i = 0, j = 0;
+    let maxSS = 0;
+    let arr = new Array(26).fill(0);
+
+    arr[s.charCodeAt(0) - 65] = 1;
 
     while( j < s.length ) {
-        if(isWindowVali(map,k)) {
+        if(isWindowVali(arr,k)) {
             maxSS = Math.max(maxSS, (j-i) + 1 );
             ++j;
-            map[s[j]] = map[s[j]] ? ++map[s[j]] : 1;
+            ++arr[s.charCodeAt(j) - 65];
         }else {
-            --map[s[i]];
+            --arr[s.charCodeAt(i) - 65];
             ++i;
         }
     }
@@ -24,14 +25,13 @@ var characterReplacement = function(s, k) {
 
 };
 
-const isWindowVali = (map, k) => {
+const isWindowVali = (arr, k) => {
     let total = 0;
     let max = 0;
     for(let i = 0; i < 26; i++) {
-        let ch = String.fromCharCode( i+65 );
-        if(map[ch]) {
-            total += map[ch];
-            max = Math.max( max, map[ch] ); 
+        if(arr[i]) {
+            total += arr[i];
+            max = Math.max( max, arr[i] ); 
         }
     }
     
