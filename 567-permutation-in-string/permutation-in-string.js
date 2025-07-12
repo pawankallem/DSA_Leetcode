@@ -30,6 +30,8 @@ var checkInclusion = function(s1, s2) {
 };
 
 const isWindowValid = (hash1, hash2) => {
-    // console.log("hash1 : ", hash1.join(""), " hash2 : ", hash2.join(""));
-    return hash1.join("") == hash2.join("");
+    for(let i = 0; i < 26; i++) {
+        if(hash1[i] !== hash2[i]) return false;
+    }
+    return true;
 }
