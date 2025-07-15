@@ -13,7 +13,6 @@ var isValid = function(word) {
     for(let i = 0; i < word.length; i++) {
         let ch = word[i];
         let chCode = ch.charCodeAt(0);
-        console.log(ch);
         if(chCode >= 65 && chCode < 97 + 26) {
             let lowerCh = ch.toLowerCase();
             if(lowerCh == 'a' || lowerCh == 'e' || lowerCh == 'i' || lowerCh == 'o' || lowerCh == 'u') isVowel = true;
@@ -24,7 +23,6 @@ var isValid = function(word) {
             return false;
         }
     }
-    console.log("minch : ", isVowel, isConsonant);
     if(isVowel && isConsonant) return true;
     return false;
     
