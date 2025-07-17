@@ -23,15 +23,12 @@ var postorderTraversal = function(root) {
             curr = curr.left;
         }
         curr = s1[s1.length - 1];
-        console.log(curr.val, ans);
         if(curr.right != null && lastVisited != curr.right) {
-            console.log("here 1")
             curr = curr.right;
         }else {
             ans.push(curr.val);
             lastVisited = s1.pop();
             curr = null;
-            console.log("here 2 : ",curr,lastVisited)
         }
     }
     return ans;
