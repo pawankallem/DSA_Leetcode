@@ -11,9 +11,16 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
-    if(root == null) return [];
-    let left = postorderTraversal(root.left);
-    let right = postorderTraversal(root.right);
+    if(!root) return [];
+    let s1 = [root];
+    let s2 = [];
 
-    return [...left, ...right, root.val];    
+    while(s1.length > 0) {
+        let curr = s1.pop();
+        s2.push(curr.val);
+        curr.left && s1.push(curr.left);
+        curr.right && s1.push(curr.right);
+    }
+
+    return s2.reverse();
 };
