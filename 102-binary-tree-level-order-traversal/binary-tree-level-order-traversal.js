@@ -27,6 +27,5 @@ var levelOrder = function(root) {
     }
 
     let ans = rec([root]);
-    console.log(ans);
     return ans;
 };
