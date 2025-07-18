@@ -12,20 +12,17 @@
  */
 var levelOrder = function(root) {
     if(!root) return [];
-    let rec = (arr) => {
-        if(arr.length <= 0) return [];
-        let newArr = [];
-        let vals = [];
-        while(arr.length) {
-            vals.push(arr[0].val);
-            arr[0].left && newArr.push(arr[0].left);
-            arr[0].right && newArr.push(arr[0].right);
-            arr.shift();
-        }
-        let temp = rec(newArr);
-        return [vals,...temp];
+    let arr = [];
+    const travarsel = (curr, level) => {
+        if(!curr) return;
+        if(!arr[level]) arr[level] = [];
+        arr[level].push(curr.val);
+        travarsel(curr.left, level+1);
+        travarsel(curr.right, level+1);
+        return;
     }
 
-    let ans = rec([root]);
-    return ans;
+    travarsel( root , 0);
+
+    return arr;
 };
