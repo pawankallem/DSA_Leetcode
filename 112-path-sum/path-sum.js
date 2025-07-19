@@ -15,10 +15,10 @@ var hasPathSum = function(root, targetSum) {
     if(!root) return false;
     let isFound = false;
     const travarse = (curr, sum) => {
-        if(!curr.left && !curr.right) {
-            if(isFound === false) isFound = sum + curr.val == targetSum;
-            console.log(curr, sum, isFound, sum+curr.val);
+        if(!curr.left && !curr.right && isFound === false) {
+            isFound = sum + curr.val == targetSum;
         }
+        if(isFound) return;
         curr.left && travarse(curr.left, sum + curr.val)
         curr.right && travarse(curr.right, sum + curr.val);
     }
