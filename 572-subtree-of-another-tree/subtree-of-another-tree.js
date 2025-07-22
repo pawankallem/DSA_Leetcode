@@ -12,22 +12,75 @@
  * @return {boolean}
  */
 var isSubtree = function (root, subRoot) {
-    if(!root && !subRoot) return true;
-    if(!root || !subRoot) return false;
-    const sameTree = (curr, subCurr) => {
-        if (!curr && !subCurr) return true;
-        if (!curr || !subCurr) return false;
-        return curr.val == subCurr.val && sameTree(curr.left, subCurr.left) &&
-            sameTree(curr.right, subCurr.right);
+    let rootHash = rec(root);
+    let subRootHash = rec(subRoot)
+    return kmp(rootHash, subRootHash);
+};
+
+
+const rec = (root) => {
+
+    let hash = "";
+    const rec1 = (curr) => {
+        if (!curr) {
+            hash += "-#";
+            return;
+        }
+        hash += "-" + curr.val;
+        rec1(curr.left);
+        rec1(curr.right);
     }
-    let isFound = false;
-    if (root.val == subRoot.val) {
-        isFound = sameTree(root, subRoot);
+
+    rec1(root);
+    return hash;
+}
+
+const kmp = (str1, str2) => {
+    let lps = [0];
+    let i = 0, j = 1;
+
+    while(j < str2.length) {
+        if(str2[i] == str2[j]) {
+            lps[j] = i+1;
+            ++i, ++j;
+        }else {
+            if(i == 0) {
+                lps[j] = 0;
+                ++j;
+            }else {
+                i = lps[i - 1];
+            }
+        }
     }
-    console.log(isFound, root.val, subRoot.val);
-    if (isFound) return true;
-    else {
-        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+
+    i = j = 0;
+
+    while( i < str1.length ) {
+        if( str1[i] == str2[j] ) {
+            ++i, ++j;
+        }else {
+            if( j == 0) {
+                i++;
+            }else {
+                j = lps[j - 1];
+            }
+        }
+        if( j == str2.length ) {
+            return true;
+        }
     }
     return false;
-};
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
