@@ -14,6 +14,7 @@
 var isSubtree = function (root, subRoot) {
     let rootHash = rec(root);
     let subRootHash = rec(subRoot)
+    return rootHash.includes(subRootHash);
     return kmp(rootHash, subRootHash);
 };
 
