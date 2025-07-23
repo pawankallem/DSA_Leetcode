@@ -16,20 +16,15 @@ var maxPathSum = function (root) {
 
     const travarse = (curr) => {
         if (!curr) return 0;
-        let leftSum = travarse(curr.left);
-        let rightSum = travarse(curr.right);
+        let leftSum = Math.max(0, travarse(curr.left));
+        let rightSum = Math.max(0, travarse(curr.right));
 
         let total = curr.val + leftSum + rightSum;
-        if (max < curr.val) max = curr.val;
         if (max < total) max = total;
-        if (max < total - leftSum) max = total - leftSum;
-        if (max < total - rightSum) max = total - rightSum;
-
-        let diff = Math.max(leftSum, rightSum);
-        return curr.val + (diff < 0 ? 0 : diff);
+        return curr.val + Math.max(leftSum, rightSum);
     }
     let sum = travarse(root);
-    if (max < sum) max = sum;
+    // if (max < sum) max = sum;
 
     return max;
 };
