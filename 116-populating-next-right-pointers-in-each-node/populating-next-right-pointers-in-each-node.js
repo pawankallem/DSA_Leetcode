@@ -13,23 +13,14 @@
  * @return {_Node}
  */
 var connect = function(root) {
-    if( !root ) return root;
-    let q = [root];
-
-    while( q.length ) {
-        let len = q.length;
-        for(let i = 0; i < len; i++ ) {
-            let curr = q.shift();
-            if( i + 1 == len ) {
-                curr.next = null;
-            }else {
-                curr.next = q[0];
-            }
-
-            curr.left && q.push(curr.left);
-            curr.right && q.push(curr.right);
-        }
+    if(!root || !root.left) return root;
+    root.left.next = root.right;
+    if(root.next) {
+        root.right.next = root.next.left;
     }
+
+    root.left && connect(root.left);
+    root.right && connect(root.right);
 
     return root;
     
