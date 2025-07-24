@@ -15,7 +15,11 @@ var isValidBST = function (root) {
     const traversal = (curr, low, high) => {
         if (!curr) return true;
 
-        return ( (low == null || low < curr.val) && (high == null || curr.val < high) && traversal(curr.left, low, curr.val) && traversal(curr.right, curr.val, high) );
+        return (
+            (low == null || low < curr.val) &&
+            (high == null || curr.val < high) &&
+            traversal(curr.left, low, curr.val) &&
+            traversal(curr.right, curr.val, high));
     };
 
     let ans = traversal(root, null, null);
