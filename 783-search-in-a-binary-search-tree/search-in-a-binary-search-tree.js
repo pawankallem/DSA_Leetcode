@@ -14,10 +14,11 @@
 var searchBST = function(root, val) {
     if(!root) return root;
     if(root.val == val) return root;
-    let left = searchBST(root.left, val);
-    let right = searchBST(root.right, val);
-
-    return left || right;
+    else if(root.val > val) {
+        return searchBST(root.left, val);
+    }else {
+        return searchBST(root.right, val);
+    }
 };
 
 
