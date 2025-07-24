@@ -10,23 +10,14 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) {
-    let ans = [];
+var isValidBST = function (root) {
 
-    const inOrderTraversal = ( curr ) => {
-        curr.left && inOrderTraversal(curr.left);
-        ans.push(curr.val);
-        curr.right && inOrderTraversal(curr.right);
-    }
+    const traversal = (curr, low, high) => {
+        if (!curr) return true;
 
-    inOrderTraversal(root);
-    let isSorted = true;
-    for(let i = 0; i < ans.length - 1; i++) {
-        if( ans[i] >= ans[i + 1] ) {
-            isSorted = false;
-            break;
-        }
-    }
+        return ( (low == null || low < curr.val) && (high == null || curr.val < high) && traversal(curr.left, low, curr.val) && traversal(curr.right, curr.val, high) );
+    };
 
-    return isSorted;
+    let ans = traversal(root, null, null);
+    return ans;
 };
