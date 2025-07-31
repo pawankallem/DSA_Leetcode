@@ -9,7 +9,6 @@ class Solution {
             int sum = prices[maxIndex] - prices[minIndex];
             if( max < sum ) max = sum;
         }
-        System.out.println(max);
         return max;
     }
 }
