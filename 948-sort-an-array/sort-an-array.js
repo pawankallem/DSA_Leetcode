@@ -8,7 +8,7 @@ var sortArray = function (nums) {
         heap.insert(nums[i]);
     }
     for (let i = nums.length - 1; i >= 0; --i) {
-        nums[i] = heap.getMax();
+        nums[i] = heap.extractMax();
     }
     return nums;
 
@@ -38,8 +38,10 @@ class Heap {
                 let temp = this.heap[p_index];
                 this.heap[p_index] = this.heap[i];
                 this.heap[i] = temp;
+                i = p_index;
+            }else {
+                break;
             }
-            i = p_index;
         }
     }
     heapifyDown(i) {
@@ -56,7 +58,7 @@ class Heap {
             this.heapifyDown(largest);
         }
     }
-    getMax() {
+    extractMax() {
         const val = this.heap[0];
         this.heap[0] = this.heap[this.heap.length - 1];
         this.heap.pop();
