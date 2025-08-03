@@ -3,12 +3,10 @@
  * @return {number[]}
  */
 var sortArray = function (nums) {
-
     const heap = new Heap();
     for (let i = 0; i < nums.length; i++) {
         heap.insert(nums[i]);
     }
-    console.log("finished : ", heap);
     for (let i = nums.length - 1; i >= 0; --i) {
         nums[i] = heap.getMax();
     }
@@ -45,7 +43,6 @@ class Heap {
         }
     }
     heapifyDown(i) {
-
         let l_child = this.getLeftChild(i);
         let r_child = this.getRightChild(i);
         let n = this.heap.length;
