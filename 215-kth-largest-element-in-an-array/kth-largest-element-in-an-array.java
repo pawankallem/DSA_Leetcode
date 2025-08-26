@@ -5,15 +5,12 @@ class Solution {
         for (int i = n - 1; i >= 0; --i) {
             heap.heapifyDown(nums, i, n);
         }
-        // heap.print(nums, 0);
         int index = n - 1;
         while (index > 0) {
             int temp = nums[index];
             nums[index] = nums[0];
             nums[0] = temp;
             heap.heapifyDown(nums, 0, index);
-            // heap.print(nums, index);
-            // System.out.println("                 break         ");
             --index;
         }
         return nums[nums.length - k];
@@ -31,13 +28,6 @@ class MaxHeap {
 
     public int getRightChild(int i) {
         return (2 * i) + 2;
-    }
-
-    public void print(int[] nums, int index) {
-        for (int i = 0; i < nums.length; i++) {
-            System.out.print(nums[i]);
-        }
-        System.out.println("-------------- " + index);
     }
 
     public void heapifyDown(int[] nums, int i, int n) {
