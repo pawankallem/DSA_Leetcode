@@ -1,0 +1,16 @@
+import java.math.BigInteger;
+
+class Solution {
+    public String largestOddNumber(String num) {
+        int i = num.length() - 1;
+        String str = "";
+        boolean isOdd = false;
+        while( i >= 0) {
+            if(isOdd == false && (num.charAt(i) - '0') % 2 != 0) {
+                return num.substring(0, i+1);
+            }
+            i--;
+        }
+        return str;
+    }
+}
