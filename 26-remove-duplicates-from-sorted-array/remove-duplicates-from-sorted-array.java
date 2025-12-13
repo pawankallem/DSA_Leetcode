@@ -1,18 +1,19 @@
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int i = 0;
-        int j = 1;
+    public int removeDuplicates(int[] arr) {
 
-        while( j < nums.length ) {
-            if( nums[i] == nums[j] ) {
-                ++j;
-            }else {
-                ++i;
-                nums[i] = nums[j];
-                ++j;
+        if(arr.length == 0 || arr.length == 1) return arr.length;
+        int first = 0;
+        int count = 1;
+        for(int i = 1; i < arr.length; i++) {
+            if(arr[first] != arr[i]) {
+                ++first;
+                arr[first] = arr[i];
+                count++;
             }
         }
-        return i + 1;
+        // System.out.println("count : " + count);
+
+        return count;
         
     }
 }
