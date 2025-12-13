@@ -1,24 +1,23 @@
 class Solution {
-    public int removeElement(int[] nums, int val) {
-        int i = 0;
-        int j = 0;
-        while( j < nums.length ) {
-            if( nums[i] == val ) {
-                if( nums[j] == val) {
-                    ++j;
-                }else {
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                    ++i;
-                    ++j;
+    public int removeElement(int[] arr, int val) {
+        if(arr.length == 0) return 0;
+        int left = 0;
+        int right = arr.length - 1;
+        int k = 0;
+        while(left <= right) {
+            if(arr[left] == val) {
+                if(arr[right] == val) {
+                    right--;
+                    continue;
                 }
-            }else {
-                ++i;
-                ++j;
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right--] = temp;
+                k++;
             }
+            left++;
         }
-
-        return i;
+        // System.out.println("Remove elements : "+ right + " : " + left + " : " + k);
+        return left;
     }
 }
