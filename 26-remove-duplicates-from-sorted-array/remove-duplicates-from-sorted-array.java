@@ -3,17 +3,13 @@ class Solution {
 
         if(arr.length == 0 || arr.length == 1) return arr.length;
         int first = 0;
-        int count = 1;
         for(int i = 1; i < arr.length; i++) {
             if(arr[first] != arr[i]) {
                 ++first;
                 arr[first] = arr[i];
-                count++;
             }
         }
-        // System.out.println("count : " + count);
-
-        return count;
+        return first + 1;
         
     }
 }
