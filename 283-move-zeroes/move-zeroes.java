@@ -13,7 +13,9 @@ class Solution {
                 }
             }else {
                 i++;
-                j = i + 1;
+                if( j <= i ) {
+                    j = i + 1;
+                }
             }
         }
     }
