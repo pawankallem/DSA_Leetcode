@@ -14,26 +14,21 @@ class Solution {
         ListNode sentinal = store;
         ListNode curr = list1;
         while(curr != null && list2 != null) {
-            while(curr != null && curr.val <= list2.val) {
+            if(curr != null && curr.val <= list2.val) {
                 sentinal.next = curr;
                 curr = curr.next;
                 sentinal = sentinal.next;
-            }
-            while(list2 != null && curr != null && list2.val < curr.val) {
+            } else {
                 sentinal.next = list2;
                 list2 = list2.next;
                 sentinal = sentinal.next;
             }
         }
-        while(curr != null) {
+        if(curr != null) {
             sentinal.next = curr;
-            curr = curr.next;
-            sentinal = sentinal.next;
         }
-        while(list2 != null) {
+        if(list2 != null) {
             sentinal.next = list2;
-            list2 = list2.next;
-            sentinal = sentinal.next;
         }
         return store.next;
     }
