@@ -13,9 +13,19 @@ class Solution {
         if(head == null || head.next == null) {
             return head;
         }
-        ListNode temp = head.next;
-        head.next = swapPairs(head.next.next);
-        temp.next = head;
-        return temp;
+        ListNode sentinal = new ListNode();
+        ListNode tracker = sentinal;
+        ListNode curr = head;;
+        while(curr != null && curr.next != null) {
+            ListNode temp = curr.next;
+            curr.next = curr.next.next;
+            temp.next = curr;
+            curr = curr.next;
+            tracker.next = temp;
+            if(curr != null) {
+                tracker = tracker.next.next;
+            }
+        }
+        return sentinal.next;
     }
 }
